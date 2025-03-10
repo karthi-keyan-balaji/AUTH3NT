@@ -1,0 +1,58 @@
+body {
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 70px; /* Increase the font size */
+    padding: 20px;
+    background: #000000;
+    color: #080000;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Ensure full viewport height */
+  }
+  
+  .type {
+    color: #0000;
+    background: linear-gradient(-90deg, #feffff 5px, #0000 0) 10px 0,
+      linear-gradient(#eaeeef 0 0) 0 0;
+    background-size: calc(var(--n) * 1ch) 200%;
+    -webkit-background-clip: padding-box, text;
+    background-clip: padding-box, text;
+    background-repeat: no-repeat;
+    animation: b .7s infinite steps(1),
+               t calc(var(--n) * .3s) steps(var(--n)) forwards;
+  }
+  
+  @keyframes t {
+    from {
+      background-size: 0 200%;
+    }
+  }
+  
+  @keyframes b {
+    50% {
+      background-position: 0 -100%, 0 0;
+    }
+    
+  }
+  button {
+    font-family: monospace;
+  margin-top: 20px; /* Add a gap between the text and the button */
+  font-size: 20px; /* Increase button font size */
+  background-color: #dbe3e6; /* Button background color */
+  color: rgb(22, 21, 21);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #f6f9f9; 
+  color: #050801;
+      box-shadow: 0 0 5px #f6f5f5,
+        0 0 25px #f8f5f5,
+        0 0 50px #f4f1f1,
+        0 0 200px #f9f7f7;
+      -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);/* Button background color on hover */
+}
+  

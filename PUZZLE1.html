@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLAS</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #0a0a0a;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 60px rgba(0, 255, 0, 0.5);
+        }
+        #submit-button {
+    font-family: monospace;
+    font-size: 20px;
+    background-color: #08619c; /* Customize the button color */
+    color: #fff; /* Customize the text color */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: none; /* Initially hide the button */
+    margin: 0 auto; /* Center the button horizontally */
+    margin-top: 20px; /* Add a gap between the text and the button */
+    
+    /* Curvier edges */
+    border-radius: 10px;
+
+    /* Glowing effect */
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.8); /* Adjust the color and intensity as needed */
+}
+
+#submit-button:hover {
+    background-color: #2980b9; /* Customize the button color on hover */
+    color: #fff;
+    box-shadow: 0 0 20px rgba(52, 152, 219, 1); /* Adjust the color and intensity as needed */
+}
+
+        h1 {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            grid-gap: 2px;
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+
+        .grid-box {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: background-size 0.2s, transform 0.2s;
+        }
+
+        .grid-box:hover {
+            background-size: 110%;
+            transform: scale(1.05);
+        }
+
+        .grid-box:active {
+            transform: scale(0.95);
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        #password {
+            font-weight: bold;
+            color: #e70e02;
+        }
+
+        #clear-button {
+            background-color: #e70e02;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #clear-button:hover {
+            background-color: #ff3c31;
+        }
+
+        #generate-phrase-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #generate-phrase-button:hover {
+            background-color: #45a049;
+        }
+
+        #phrase-container {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #4CAF50;
+        }
+
+        .custom-file-input {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .custom-file-input input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+        }
+
+        .custom-file-input::before {
+            content: 'Choose File';
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            padding: 8px 20px;
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 10pt;
+            transition: box-shadow 0.3s;
+        }
+
+        .custom-file-input:hover::before,
+        .custom-file-input input:hover + ::before,
+        .custom-file-input input:active + ::before {
+            border-color: #0056b3;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+        }
+
+        .custom-file-input:active::before {
+            background: #0056b3;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.9);
+        }
+        .type {
+    color: #0000;
+    background: linear-gradient(-90deg, #feffff 5px, #0000 0) 10px 0,
+      linear-gradient(#eaeeef 0 0) 0 0;
+    background-size: calc(var(--n) * 1ch) 200%;
+    -webkit-background-clip: padding-box, text;
+    background-clip: padding-box, text;
+    background-repeat: no-repeat;
+    animation: b .7s infinite steps(1),
+               t calc(var(--n) * .3s) steps(var(--n)) forwards;
+  }
+  
+  @keyframes t {
+    from {
+      background-size: 0 200%;
+    }
+  }
+  
+  @keyframes b {
+    50% {
+      background-position: 0 -100%, 0 0;
+    }
+    
+  }
+  button#clear-button {
+    font-family: monospace;
+  margin-top: 20px; /* Add a gap between the text and the button */
+  font-size: 20px; /* Increase button font size */
+  background-color: #e00f0f; /* Button background color */
+  color: rgb(22, 21, 21);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button#clear-button:hover {
+  background-color: rgb(233, 14, 14); 
+  color: #eb1313;
+      box-shadow: 0 0 5px #f6f5f5,
+        0 0 25px #ed1919,
+        0 0 50px #d31111,
+        0 0 200px #cb0d0d;
+      -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);/* Button background color on hover */
+    }
+button#generate-phrase-button {
+    font-family: monospace;
+  margin-top: 20px; /* Add a gap between the text and the button */
+  font-size: 20px; /* Increase button font size */
+  background-color: rgb(32, 230, 14); /* Button background color */
+  color: rgb(22, 21, 21);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button#generate-phrase-button:hover {
+  background-color: rgb(7, 228, 7); 
+  color: #7ad305;
+      box-shadow: 0 0 5px #d6d1d1,
+        0 0 25px #11c211,
+        0 0 50px ,#11c211
+        0 0 200px #11c211;
+      -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);/* Button background color on hover */
+}
+  
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <form id="imageForm" action="kkp3.php" method="post" >
+        <label class="custom-file-input">
+            <input type="file" id="image-upload" accept="image/*">
+        </label>
+        <div class="grid-container" id="grid-container"></div>
+        <p>Password: <span id="password"></span></p>
+        <input type="hidden" name="puzzlepass" id="hidden-password">
+        <label name="password" id="password-input"></label>
+        <button type="button" id="clear-button">Clear Image</button>
+        <button type="button" id="generate-phrase-button">Generate Phrase</button>
+        <br><br><br>
+        <label name="phrase" id="phrase-container"></label>
+        <input type="hidden" name="phrasepass" id="hidden-phrase">
+        <br><br><br>
+        <div id="textbox-container" style="display: none; text-align: center;">
+            <label for="user-input">Enter rkey:</label>
+            <input type="text" id="user-input" name="rkey" style="margin: 10px;">
+        </div>
+        <br><br><br>
+        <button type="submit" id="submit-button" style="display: none;">Submit Form</button>
+    </form>
+
+    <script>
+        const submitButton = document.getElementById('submit-button');
+        submitButton.addEventListener('click', () => {
+            document.getElementById('imageForm').submit();
+        });
+        const gridContainer = document.getElementById('grid-container');
+        const passwordSpan = document.getElementById('password');
+        const clearButton = document.getElementById('clear-button');
+        const phraseGeneratorButton = document.getElementById('generate-phrase-button');
+        const phraseContainer = document.getElementById('phrase-container');
+        let imageParts = [];
+        const passwords = [];
+        let gridGenerated = false;
+        let currentPassword = "";
+
+        // Function to create a unique identifier for each block based on row and column
+        function getBlockIdentifier(row, col) {
+            return `block-${row}-${col}`;
+        }
+
+        // Function to create grid boxes with the same password
+        function createGrid() {
+            for (let i = 0; i < 16; i++) {
+                const gridBox = document.createElement('div');
+                gridBox.classList.add('grid-box');
+                gridBox.style.backgroundImage = `url(${imageParts[i]})`;
+                gridBox.dataset.index = i;
+                const row = Math.floor(i / 4);
+                const col = i % 4;
+                const blockIdentifier = getBlockIdentifier(row, col);
+                const blockPassword = passwords[blockIdentifier];
+                gridBox.addEventListener('click', () => {
+                    passwordSpan.textContent = blockPassword;
+                });
+                gridContainer.appendChild(gridBox);
+            }
+            gridGenerated = true;
+        }
+        passwordSpan.addEventListener('DOMSubtreeModified', function () {
+            // Update the value of the hidden input field when the password changes
+            document.getElementById('hidden-password').value = passwordSpan.textContent;
+        });
+
+
+        // Function to split the image into equal parts
+        function splitImage(image) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            img.src = image;
+
+            img.onload = () => {
+                const partWidth = img.width / 4;
+                const partHeight = img.height / 4;
+
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 4; j++) {
+                        canvas.width = partWidth;
+                        canvas.height = partHeight;
+                        ctx.drawImage(img, -i * partWidth, -j * partHeight);
+                        const blockIdentifier = getBlockIdentifier(i, j);
+                        passwords[blockIdentifier] = generatePassword();
+                        imageParts.push(canvas.toDataURL());
+                    }
+                }
+
+                createGrid();
+            };
+        }
+
+        // Function to generate a random password
+        function generatePassword() {
+            return Math.random().toString(36).substring(2, 10);
+        }
+
+        // Listen for file upload
+        const imageUpload = document.getElementById('image-upload');
+        imageUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                event.preventDefault();
+                imageParts = [];
+                passwords.length = 0;
+                gridGenerated = false;
+                gridContainer.innerHTML = ''; // Clear the grid
+                phraseContainer.textContent = ''; // Clear the phrase container
+                splitImage(URL.createObjectURL(file));
+                gridContainer.style.backgroundImage = 'none'; // Remove the background image
+                const passwordInput = document.getElementById('password-input');
+                passwordInput.value = passwordSpan.textContent;
+                currentPassword = passwordSpan.textContent;
+                document.getElementById('hidden-password').value = currentPassword;
+            }
+        });
+
+        // Event listener for the clear button
+        clearButton.addEventListener('click', () => {
+            
+            imageParts = [];
+            passwords.length = 0;
+            gridGenerated = false;
+            gridContainer.innerHTML = ''; // Clear the grid
+            phraseContainer.textContent = ''; // Clear the phrase container
+            passwordSpan.textContent = ''; // Clear the password
+            imageUpload.value = ''; // Reset the file input
+        });
+
+        phraseGeneratorButton.addEventListener('click', (event)=>{
+        event.preventDefault(); // Prevent form submission
+            generatePhrase();
+            const textboxContainer = document.getElementById('textbox-container');
+            textboxContainer.style.display = 'block';
+            // Show the submit button after generating the phrase
+            submitButton.style.display = 'block';
+        });
+        function generatePhrase() {
+            if (gridGenerated) {
+                const basePhrases = [
+                    // Add more phrases as needed
+                ];
+
+                const crypticBiblePhrases = [
+                    "Th3_L0rd_1s_My_Sh3ph3rd",
+                    "Fa1th_H0p3_L0v3",
+                    "Pr0v3rbs_3:5_TrustInTheL0rd",
+                    "J3r3m14h_29:11_G0dH4sPl4nsF0rY0u",
+                    "Ex0dus_W0rsh1p_0nly_G0d",
+                    "Th3_Way_Th3_Truth_Th3_L1fe",
+                    "C0mm1t2Th3L0rd_4nd_F0ll0w_His_W4ys",
+                    "B3_Transf0rm3d_By_Th3_R3n3w1ng_0f_M1nd",
+                    "I_C4n_D0_All_Th1ngs_Thr0ugh_H1m",
+                    "Fru1t_0f_Th3_Sp1r1t_4ll0ws_L0v3_J0y_P34c3",
+                    "L0v3_Is_P4t13nt_K1nd_N0t_3nvy_Pr0ud",
+                    "G0_4nd_M4k3_D1sc1pl3s_0f_4ll_N4t10ns",
+                    "Thy_W0rd_Is_A_L4mp_Unt0_My_F33t",
+                    "B3h0ld_I_St4nd_4t_Th3_D00r_Kn0ck",
+                    "Keep_Thy_H34rt_W1th_4ll_D1l1g3nce",
+                    "C4st_All_Your_C4r3_Unt0_Th3_L0rd",
+                    "Pl4ns_F0r_H0p3_4nd_Futur3_G00d",
+                    "4ll_Th1ngs_W0rk_T0g3th3r_F0r_G00d",
+                    "L3t_4ll_Y0ur_Th1ngs_B3_D0n3_W1th_L0v3",
+                    "G0d_H4th_N0t_G1v3n_Us_4_Sp1r1t_0f_F34r",
+                    "B3_Anx1ous_F0r_N0th1ng_But_Pr4y3r",
+                    "S33k_Y3_F1rst_Th3_K1ngd0m_0f_G0d",
+                    "F1x_Y0ur_3y3s_0n_J3sus_Th3_4uth0r_0f_Fa1th",
+                    "If_Any_0f_Y0u_L4ck_W1sd0m_Ask_0f_G0d",
+                    "Wh!sp3r!ng sh@d0ws h0ld @nc!3nt s3cr3ts.",
+                    "The m00n w33ps s!lv3r t34rs 0v3r f0rg0tt3n ru!ns.",
+                    "3ch03s 0f t0m0rr0w d@nc3 !n th3 g@rd3n 0f !llus!0ns.",
+                    "@ r!ddl3 !n th3 w!nd, @nsw3r3d by th3 s!l3nt tr33s.",
+                    "T!m3's cl0@k c0nc34ls th3 d00rw@y t0 !nf!n!ty.",
+                    "Th3 c!ph3r3d p@th l!3s b3n34th th3 3m3r@ld g@z3.",
+                    "B3w@r3 th3 l@byr!nth wh3r3 m!rr0rs t3ll n0 tru3ths.",
+                    "St@rs w31v3 t@l3s !n th3 t@p3stry 0f th3 n!ght.",
+                    "!n th3 !nk 0f dusk, dr34ms b!rth w!ng3d s3rp3nts.",
+                    "M!dn!ght's s!mphony 3ch03s thr0ugh th3 st@rry v01d.",
+                    "Th3 0r@c13's wh!sp3rs 3ch0 !n th3 ch@mb3rs 0f tw!l!ght.",
+                    "Sh@d0ws c@st by @ cl0ck w!th n0 h@nds.",
+                    "F0rg0tt3n f00tpr!nts 0n th3 sh0r3s 0f 3t3rn!ty.",
+                    "Th3 3n!gm@ l!3s w!th!n th3 cr!st@l!n3 l@byr!nth.",
+                    "Crypt!c run3s !nscr!b3d 0n th3 p@g3s 0f f@t3.",
+                    "Unl0ck th3 s3cr3ts h!dd3n !n th3 @mb3r 0f th3 sun.",
+                    "Th3 m@sq3r@d3 0f 3ch03s r3v34ls th3 h!dd3n p@th.",
+                    "Quantum wh!sp3rs r!ppl3 thr0ugh th3 c0sm!c s34.",
+                    "@ k@l31d0sc0p3 0f !llus!0ns p@!nts th3 h0r!z0n.",
+                    "Cl0ckw0rk butt3rf!13s d@nc3 !n th3 g@rd3n 0f dr34ms.",
+                    "Th3 r!v3r 0f t!m3 fl0ws thr0ugh th3 h0urgl@ss 0f 0bl!v!0n.",
+                    "B3y0nd th3 v31l, th3 f0rg0tt3n c0nst3ll@t!0ns t3ll t@l3s.",
+                    "3nch@nt3d m!rr0rs r3fl3ct th3 m@sks 0f d3st!ny.",
+                    "M!dn!ght's sh@d0w c0nc34ls th3 f0rg0tt3n d00rw@y.",
+                    "Th3 c!ph3r3d l@ngu@g3 0f th3 c3l3st!@l c@rt0gr@ph3r.",
+                    "!n th3 g@rd3n 0f 3ch03s, s!l3nc3 bl00ms.",
+                    "T!m3's p3ndulum sw!ngs t0 th3 rhytHm 0f th3 f0rg0tt3n.",
+                    "!llus!0ns c@rv3d !n th3 p3tr!f!3d w00d 0f dr34ms.",
+                    "St@rs wh!sp3r s3cr3ts t0 th3 n!ght, l0st !n tr@nsl@t!0n.",
+                    "Th3 3n!gm@t!c d@nc3 0f sh@d0ws b3n34th th3 s!lv3r g@z3.",
+                    "Th3 c0sm!c ch3ssb0@rd, wh3r3 st@rs @r3 th3 p@wns.",
+                    "M00nl!t run3s !nscr!b3d 0n th3 p@rchm3nt 0f sh@d0ws.",
+                    "Th3 s!mphony 0f th3 c0sm0s pl@y3d 0n str!ngs 0f st@rdust.",
+                    "@ cl0ckw0rk h34rt b34ts !n th3 m3ch@n!c@l ch3st 0f t!m3.",
+                    "Th3 c3l3st!@l @lcH3m!st t3rns st@rdust !nt0 dr34ms.",
+                    "Quantum wh!sp3rs 3ch0 thr0ugh th3 h@lls 0f 3t3rn!ty.",
+                    "3n!gm@t!c symb0ls 3tch3d 0n th3 surf@c3 0f th3 m00n.",
+                    "Th3 r!v3r 0f t!m3 fl0ws b@ckw@rd !n th3 r34lm 0f dr34ms.",
+                    "Cl0ckw!s3 3ch03s !n th3 c0unt3rcl0ckw!s3 l@byr!nth.",
+                    "Th3 r!ddl3s 0f th3 c0sm!c j3st3r wr!tt3n !n st@rdust.",
+                    "Th3 c3l3st!@l w34v3r sp!ns c0nst3ll@t!0ns !nto 3x!st3nc3.",
+                    "Wh!sp3rs 0f th3 f0rg0tt3n 3ch0 !n th3 c0rr!d0rs 0f t!m3.",
+                                        // Add more cryptic phrases as needed
+                ];
+
+                const randomCrypticIndex = Math.floor(Math.random() * crypticBiblePhrases.length);
+
+                const randomPhrase = crypticBiblePhrases[randomCrypticIndex];
+
+                phraseContainer.textContent = randomPhrase;
+                document.getElementById('hidden-phrase').value = phraseContainer.textContent;
+            } else {
+                alert("Please upload an image first to generate the grid.");
+            }
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Bible Verse Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #verse-container {
+            margin: 20px 0;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Random Bible Verse Generator</h2>
+    <button onclick="generateVerse()">Generate Verse</button>
+    <div id="verse-container"></div>
+
+    <script>
+        const bibleVerses = [
+            "For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope. - Jeremiah 29:11",
+            "I can do all things through him who strengthens me. - Philippians 4:13",
+            "Trust in the Lord with all your heart, and do not lean on your own understanding. - Proverbs 3:5",
+            "The Lord is my shepherd; I shall not want. - Psalm 23:1",
+            "And we know that in all things God works for the good of those who love him. - Romans 8:28",
+            // Add more verses as needed
+        ];
+
+        function generateVerse() {
+            const randomIndex = Math.floor(Math.random() * bibleVerses.length);
+            const randomVerse = bibleVerses[randomIndex];
+
+            document.getElementById('verse-container').textContent = randomVerse;
+        }
+    </script>
+</body>
+</html>

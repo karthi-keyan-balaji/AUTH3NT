@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Get Data</h1>
+  <p id="displayData"></p>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      getData();
+    });
+
+    function getData() {
+      var storedData = localStorage.getItem('storedData');
+      if (storedData) {
+        document.getElementById('displayData').textContent = 'Stored Data: ' + storedData;
+      } else {
+        document.getElementById('displayData').textContent = 'No data stored yet.';
+      }
+    }
+  </script>
+</body>
+</html>

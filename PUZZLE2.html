@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLAS Form</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #0a0a0a;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 60px rgba(0, 255, 0, 0.5);
+        }
+
+        form {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-input {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 8px;
+            font-size: 16px;
+            background-color: #08619c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .custom-file-input:hover {
+            background-color: #2980b9;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 1);
+        }
+
+        input[type="file"]:focus + .custom-file-input {
+            outline: 2px solid #fff;
+        }
+
+        button {
+            margin-top: 20px;
+            font-size: 20px;
+            background-color: #08619c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 1);
+        }
+    </style>
+</head>
+<body>
+    <form action="kkp5.php" method="post" enctype="multipart/form-data">
+        <label for="image-upload" class="custom-file-input">Upload Image</label>
+        <input type="file" id="image-upload" name="image" accept="image/*" required>
+
+        <label for="image-password">Enter RKey:</label>
+        <input type="password" id="image-password" name="keyp" required>
+
+        <label for="phrase">Enter Phrase:</label>
+        <input type="text" id="phrase" name="phrase" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

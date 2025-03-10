@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TLAS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section>
+        <span></span>
+        <span></span>
+          <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+
+        <span></span>
+        <span></span>
+        <div class="signin">
+            <div class="content">
+                <h2>Sign Up</h2>
+                <div class="form">
+                    <form id="login-form" action="kkp.php" method="post">
+                        <div class="inputBox">
+                            <input type="text" required name="username" id="username">
+                            <i>Username</i>
+                        </div>
+                        <div class="inputBox">
+                            <input type="password" required name="password" id="pass1" oninput="checkPassword()">
+                            <i>Password</i>
+                        </div>
+                        <div class="links">
+                            <a href="#">Forgot Password</a>
+                            <a href="LOGIN.html">Signin</a>
+                        </div>
+                        <div class="inputBox">
+                            <input type="submit" value="Login" id="submit-button">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    function checkPassword() {
+        const passwordInput = document.getElementById("pass1");
+        const password = passwordInput.value;
+        const yearPattern = /(19|20)\d\d/;
+
+        if (yearPattern.test(password)) {
+            alert("Error: Password cannot contain a year.");
+            passwordInput.setCustomValidity("Password cannot contain a year.");
+        } else {
+            passwordInput.setCustomValidity(""); // Reset validation message
+        }
+    }
+
+    const loginForm = document.getElementById("login-form");
+    loginForm.addEventListener("submit", function (event) {
+        // No need to prevent form submission here
+        // If there is an error, it will be handled by the browser's validation
+        checkPassword();
+    });
+    </script>
+</body>
+</html>

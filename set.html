@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    input {
+      padding: 10px;
+      margin: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Set Data</h1>
+  <label for="data">Enter data:</label>
+  <input type="text" id="data">
+  <button onclick="setData()">Set Data</button>
+
+  <script>
+    function setData() {
+      var data = document.getElementById('data').value;
+      localStorage.setItem('storedData', data);
+      alert('Data has been set successfully!');
+    }
+  </script>
+</body>
+</html>
+

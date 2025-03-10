@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    h1{
+        color: #dcdddf;
+    }
+    /* Center the content */
+    /* Black background */
+    body {
+      color: #050801;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #000; /* Black background color */
+    }
+
+    /* Create a flex container for the buttons */
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* Increased gap between buttons */
+    }
+
+    /* Style the buttons */
+    .button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button a {
+      position: relative;
+      display: inline-block;
+      padding: 35px 50px;
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: 0.5s;
+      letter-spacing: 4px;
+      overflow: hidden;
+      margin-right: 50px;
+      border: .5px solid #fff;
+      cursor: pointer;
+    }
+
+    /* Red button */
+    .button#red a:hover {
+      background: #f03a17; /* Red color on hover */
+      color: #fff;
+      box-shadow: 0 0 5px #e70e02,
+        0 0 25px #e70e02,
+        0 0 50px #e70e02,
+        0 0 200px #e70e02;
+      -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+    }
+
+    /* Blue button */
+    .button#blue a:hover {
+      background: #035df4; /* Blue color on hover */
+      color: #fff;
+      box-shadow: 0 0 5px #035df4,
+        0 0 25px #035df4,
+        0 0 50px #035df4,
+        0 0 200px #035df4;
+      -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+    }
+
+    /* Green button */
+    .button#green a:hover {
+      background: #18a406; /* Green color on hover */
+      color: #fff;
+      box-shadow: 0 0 5px #18a406,
+        0 0 25px #18a406,
+        0 0 50px #18a406,
+        0 0 200px #18a406;
+      -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+    }
+
+    .button a span {
+      position: absolute;
+      display: block;
+    }
+
+    .button a span:nth-child(1) {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 9px;
+      background: linear-gradient(90deg, transparent, #03e9f4);
+      animation: animate1 2s linear infinite;
+    }
+
+    @keyframes animate1 {
+      0% {
+        left: -100%;
+      }
+      50%, 100% {
+        left: 100%;
+      }
+    }
+
+    .button a span:nth-child(2) {
+      top: -100%;
+      right: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, #03e9f4);
+      animation: animate2 1s linear infinite;
+      animation-delay: 0.25s;
+    }
+
+    @keyframes animate2 {
+      0% {
+        top: -100%;
+      }
+      50%, 100% {
+        top: 100%;
+      }
+    }
+
+    .button a span:nth-child(3) {
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(270deg, transparent, #03e9f4);
+      animation: animate3 1s linear infinite;
+      animation-delay: 0.50s;
+    }
+
+    @keyframes animate3 {
+      0% {
+        right: -100%;
+      }
+      50%, 100% {
+        right: 100%;
+      }
+    }
+
+    .button a span:nth-child(4) {
+      bottom: -100%;
+      left: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(360deg, transparent, #03e9f4);
+      animation: animate4 1s linear infinite;
+      animation-delay: 0.75s;
+    }
+
+    @keyframes animate4 {
+      0% {
+        bottom: -100%;
+      }
+      50%, 100% {
+        bottom: 100%;
+      }
+    }
+
+    /* Style the text field */
+    #output {
+      padding: 10px;
+      font-size: 16px;
+      width: 200px;
+      text-align: center;
+      margin-top: 90px; /* Adjusted margin to push it down further */
+    }
+
+    /* Style the submit button */
+    #submit-button {
+      padding: 15px 20px;
+      background: #777;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #submit-button:hover {
+      background: #444;
+      box-shadow: 0 0 5px #dcdddf,
+        0 0 25px #dcdddf,
+        0 0 50px#dcdddf,
+        0 0 200px #dcdddf   ;
+      -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+
+    }
+  </style>
+</head>
+<body>
+  <h1> 
+    USERNAME: <span id="result-name"></span>
+  </h1>
+  <div class="button-container">
+    <div class="button" id="red">
+      <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Red
+      </a>
+    </div>
+    <div class="button" id="blue">
+      <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Blue
+      </a>
+    </div>
+    <div class="button" id="green">
+      <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Green
+      </a>
+    </div>
+    <input type="password" id="output" readonly>
+    <div class="button-container">
+      <div class="button" id="red">
+        <button id="submit-button"> Submit</button>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+  </div>
+  <script>
+    window.addEventListener('load',()=>{
+    const params= (new URL (document.location)).searchParams;
+    const name= params.get('username');
+    document.getElementById('result-name').innerHTML=name;
+    })
+    // JavaScript to handle button clicks and generate values as described
+    // JavaScript to handle button clicks and generate values as described
+    const redButton = document.getElementById('red');
+    const blueButton = document.getElementById('blue');
+    const greenButton = document.getElementById('green');
+    const output = document.getElementById('output');
+    let value = '';
+
+    redButton.addEventListener('click', () => {
+      if (value.length < 9) {
+        value += 'k23';
+        output.value = value;
+      }
+    });
+
+    blueButton.addEventListener('click', () => {
+      if (value.length < 9) {
+        value += '2ki';
+        output.value = value;
+      }
+    });
+
+    greenButton.addEventListener('click', () => {
+      if (value.length < 9) {
+        value += '3ky';
+        output.value = value;
+      }
+    });
+  </script>
+</body>
+</html>
